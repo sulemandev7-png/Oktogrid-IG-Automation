@@ -1,0 +1,9 @@
+{
+  "deviceId": "00989",
+  "assetName": "Transformer-01",
+  "primaryKv": "11",
+  "secondaryKv": "0.415",
+  "tertiaryKv": "0.4",
+  "ratingMva": "1.5",
+  "yearOfManufacture": "2020"
+}
