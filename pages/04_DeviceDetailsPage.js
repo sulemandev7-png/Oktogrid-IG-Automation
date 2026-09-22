@@ -42,6 +42,14 @@ class DeviceDetailsPage {
     console.log("Filling year of manufacture:", data.yearOfManufacture);
     await this.yearOfManufacture.fill(data.yearOfManufacture);
   }
+  async assertFieldValidationError(field, value, expectedError) {
+    console.log(`Filling ${field} with:`, JSON.stringify(value));
+    const fieldLocator = this[field];
+    await fieldLocator.fill(value);
+    await fieldLocator.press("Tab");
+    const errorMessage = this.page.getByText(expectedError, { exact: true });
+    await expect(errorMessage).toBeVisible();
+  }
   async setDeviceLocation() {
     console.log("Setting device location");
     await this.setLocation.click();

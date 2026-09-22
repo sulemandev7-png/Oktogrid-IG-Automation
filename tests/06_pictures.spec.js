@@ -1,5 +1,5 @@
 const { test: customTest, expect } = require("../utils/fixtures");
-const { PicturesPage } = require("../pages/pictures");
+const { PicturesPage } = require("../pages/06_pictures");
 customTest(
   "Adding pcitures at the end",
   async ({ powerAndDataCollectorSelectedPage }) => {

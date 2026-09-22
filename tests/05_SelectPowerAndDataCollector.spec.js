@@ -1,7 +1,7 @@
 const { test: customTest, expect } = require("../utils/fixtures");
 const {
   SelectPowerAndDataCollectorPage,
-} = require("../pages/SelectPowerAndDataCollectorPage");
+} = require("../pages/05_SelectPowerAndDataCollectorPage");
 customTest(
   "Selecting power source and transformer type",
   async ({ assetDetailsCompletedPage }) => {

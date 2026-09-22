@@ -1,21 +1,33 @@
 const base = require("@playwright/test");
-const { LoginPage } = require("../pages/LoginPage");
+const { LoginPage } = require("../pages/01_LoginPage");
 const loginData = require("./loginData.json");
-const { InstallationPage } = require("../pages/InstallationPage");
-const { DeviceInstallationPage } = require("../pages/DeviceInstallationPage");
-const { DeviceDetailsPage } = require("../pages/DeviceDetailsPage");
+const { InstallationPage } = require("../pages/02_InstallationPage");
+const {
+  DeviceInstallationPage,
+} = require("../pages/03_DeviceInstallationPage");
+const { DeviceDetailsPage } = require("../pages/04_DeviceDetailsPage");
 const {
   SelectPowerAndDataCollectorPage,
-} = require("../pages/SelectPowerAndDataCollectorPage");
+} = require("../pages/05_SelectPowerAndDataCollectorPage");
 const Devdata = require("./DeviceData.json");
+
+const loginAsEndUser = async (page) => {
+  const login = new LoginPage(page);
+  await login.goto(loginData.devUrl);
+  await login.selectLanguage();
+  await login.login(loginData.Email, loginData.password);
+};
+
 const customTest = base.test.extend({
   authenticatedPage: async ({ page, context }, use) => {
     await context.grantPermissions(["camera", "geolocation"]);
     await context.setGeolocation({ latitude: 25.2048, longitude: 55.2708 });
-    const login = new LoginPage(page);
-    await login.goto(loginData.devUrl);
-    await login.selectLanguage();
-    await login.login(loginData.Email, loginData.password);
+    await loginAsEndUser(page);
+    await use(page);
+  },
+  // same login flow, but the browser context is never granted camera/location permissions
+  authenticatedPageNoPermissions: async ({ page }, use) => {
+    await loginAsEndUser(page);
     await use(page);
   },
   installedPage: async ({ authenticatedPage }, use) => {

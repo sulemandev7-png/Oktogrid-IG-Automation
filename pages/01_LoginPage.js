@@ -1,3 +1,5 @@
+const { expect } = require("@playwright/test");
+
 class LoginPage {
   constructor(page) {
     this.page = page;
@@ -22,6 +24,12 @@ class LoginPage {
     await this.endUserEmail.fill(email);
     await this.endUserPassword.fill(password);
     await this.loginBtn.click();
+  }
+  async assertErrorMessageVisible(expectedError) {
+    const errorMessage = this.page
+      .locator("div[data-content]")
+      .filter({ hasText: expectedError });
+    await expect(errorMessage).toBeVisible();
   }
 }
 module.exports = { LoginPage };

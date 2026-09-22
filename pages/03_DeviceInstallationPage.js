@@ -1,3 +1,5 @@
+const { expect } = require("@playwright/test");
+
 class DeviceInstallationPage {
   constructor(installedPage) {
     this.installedPage = installedPage;
@@ -17,6 +19,16 @@ class DeviceInstallationPage {
     console.log("Entering device ID:", deviceID);
     await this.deviceField.fill(deviceID);
     await this.nextButton.click();
+  }
+  async enterDeviceId(deviceID) {
+    console.log("Entering device ID:", deviceID);
+    await this.deviceField.fill(deviceID);
+  }
+  async assertErrorMessageVisible(expectedError) {
+    const errorMessage = this.installedPage
+      .locator("div[data-content]")
+      .filter({ hasText: expectedError });
+    await expect(errorMessage).toBeVisible();
   }
   async selectTransformerType() {
     console.log("Selecting transformer type: Dry-Type");

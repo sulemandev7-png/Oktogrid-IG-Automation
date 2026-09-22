@@ -1,0 +1,56 @@
+[
+  {
+    "scenario": "Primary kV below minimum",
+    "field": "primaryKV",
+    "value": "5",
+    "expectedError": "Primary kV must be between 10 and 1200."
+  },
+  {
+    "scenario": "Primary kV required",
+    "field": "primaryKV",
+    "value": "",
+    "expectedError": "Primary kV is required."
+  },
+  {
+    "scenario": "Secondary kV below minimum",
+    "field": "secondaryKv",
+    "value": "0.1",
+    "expectedError": "Secondary kV must be between 0.4 and 400."
+  },
+  {
+    "scenario": "Secondary kV required",
+    "field": "secondaryKv",
+    "value": "",
+    "expectedError": "Secondary kV is required."
+  },
+  {
+    "scenario": "Tertiary kV below minimum",
+    "field": "tertiaryKv",
+    "value": "0.1",
+    "expectedError": "Tertiary kV must be between 0.4 and 400."
+  },
+  {
+    "scenario": "Rating MVA below minimum",
+    "field": "ratingMva",
+    "value": "0.01",
+    "expectedError": "Rating MVA must be between 0.1 and 5000."
+  },
+  {
+    "scenario": "Rating MVA required",
+    "field": "ratingMva",
+    "value": "",
+    "expectedError": "Rating MVA is required."
+  },
+  {
+    "scenario": "Year of Manufacture below minimum",
+    "field": "yearOfManufacture",
+    "value": "1899",
+    "expectedError": "Insert a year between 1900 and the current year."
+  },
+  {
+    "scenario": "Year of Manufacture required",
+    "field": "yearOfManufacture",
+    "value": "",
+    "expectedError": "Year of Manufacture is required."
+  }
+]

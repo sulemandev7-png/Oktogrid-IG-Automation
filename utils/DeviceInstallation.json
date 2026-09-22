@@ -1,0 +1,5 @@
+{
+  "scenario": "Add wrong device id",
+  "deviceId": "99999",
+  "deviceInstallationMsg": "Device not found."
+}

@@ -1,3 +1,5 @@
+const { expect } = require("@playwright/test");
+
 class InstallationPage {
   constructor(authenticatedPage) {
     this.authenticatedPage = authenticatedPage;
@@ -44,6 +46,10 @@ class InstallationPage {
   async nextButton() {
     console.log("Clicking Next button");
     await this.nextBtn.click();
+  }
+  async assertNextButtonDisabled() {
+    await expect(this.camera).toBeVisible();
+    await expect(this.nextBtn).toBeDisabled();
   }
 }
 module.exports = { InstallationPage };
