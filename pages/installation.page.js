@@ -23,6 +23,7 @@ class InstallationPage {
   async toggle() {
     console.log("Toggling Confirm switch");
     const knob = this.confirmToggle.locator(".absolute").first();
+    await knob.waitFor({ state: "visible" });
     const box = await knob.boundingBox();
 
     await this.authenticatedPage.mouse.move(

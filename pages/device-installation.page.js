@@ -36,11 +36,22 @@ class DeviceInstallationPage {
   async selectTransformerType() {
     console.log("Selecting transformer type: Dry-Type");
     await this.transformerType.click();
+    await expect(this.transformerType).toBeChecked();
+    await expect(this.transformerNextButton).toBeEnabled();
     await this.transformerNextButton.click();
+    try {
+      await this.confirmToggle.waitFor({ state: "visible", timeout: 5000 });
+    } catch {
+      if (await this.transformerNextButton.isVisible()) {
+        await this.transformerNextButton.click();
+        await this.confirmToggle.waitFor({ state: "visible" });
+      }
+    }
   }
   async toggle() {
     console.log("Toggling Confirm switch");
     const knob = this.confirmToggle;
+    await knob.waitFor({ state: "visible" });
     const box = await knob.boundingBox();
     console.log("Knob position before drag:", box);
 
