@@ -1,21 +1,10 @@
 const { test, expect } = require("@playwright/test");
 const { LoginPage } = require("../../pages/login.page");
-const negativeLoginData = require("../../data/login/login.negative.data.json");
+const {
+  serverErrors: negativeData,
+  clientValidation: invalidData,
+} = require("../../data/login/login.negative.data");
 const devUrl = process.env.DEV_BASE_URL;
-const rawJson = JSON.stringify(negativeLoginData)
-  .replaceAll("{{VALID_EMAIL}}", process.env.TEST_LOGIN_EMAIL || "")
-  .replaceAll("{{VALID_PASSWORD}}", process.env.TEST_LOGIN_PASSWORD || "")
-  .replaceAll(
-    "{{VALID_PASSWORD_NO_SYMBOL}}",
-    process.env.TEST_LOGIN_PASSWORD_NO_SYMBOL || "",
-  )
-  .replaceAll(
-    "{{VALID_PASSWORD_WRONG}}",
-    process.env.TEST_LOGIN_PASSWORD_WRONG || "",
-  );
-const resolvedData = JSON.parse(rawJson);
-const negativeData = resolvedData.serverErrors;
-const invalidData = resolvedData.clientValidation;
 
 test.describe("Login - negative - server-side errors", () => {
   for (const scenario of negativeData) {
