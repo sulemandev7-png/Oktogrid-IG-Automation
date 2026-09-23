@@ -30,6 +30,9 @@ class DeviceInstallationPage {
       .filter({ hasText: expectedError });
     await expect(errorMessage).toBeVisible();
   }
+  async assertNextButtonDisabled() {
+    await expect(this.nextButton).toBeDisabled();
+  }
   async selectTransformerType() {
     console.log("Selecting transformer type: Dry-Type");
     await this.transformerType.click();

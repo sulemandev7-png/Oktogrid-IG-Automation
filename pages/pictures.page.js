@@ -1,7 +1,9 @@
 class PicturesPage {
   constructor(page) {
     this.page = page;
-    this.takePictureButton = page.getByRole("button", { name: "Take Picture" });
+    this.takePictureButton = page.getByRole("button", {
+      name: "Take Picture",
+    });
     this.captureFrameButton = page.getByRole("button", {
       name: "Capture frame",
     });

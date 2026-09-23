@@ -31,5 +31,17 @@ class LoginPage {
       .filter({ hasText: expectedError });
     await expect(errorMessage).toBeVisible();
   }
+  async fillEmail(email) {
+    await this.endUserEmail.fill(email);
+  }
+  async fillPassword(password) {
+    await this.endUserPassword.fill(password);
+  }
+  async isLoginButtonDisabled() {
+    return this.page.getByRole("button", { name: "Log in" }).isDisabled();
+  }
+  async getEmailValidationMessage() {
+    return this.endUserEmail.evaluate((el) => el.validationMessage);
+  }
 }
 module.exports = { LoginPage };

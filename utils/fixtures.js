@@ -1,21 +1,21 @@
 const base = require("@playwright/test");
-const { LoginPage } = require("../pages/01_LoginPage");
-const loginData = require("./loginData.json");
-const { InstallationPage } = require("../pages/02_InstallationPage");
-const {
-  DeviceInstallationPage,
-} = require("../pages/03_DeviceInstallationPage");
-const { DeviceDetailsPage } = require("../pages/04_DeviceDetailsPage");
+const { LoginPage } = require("../pages/login.page");
+const { InstallationPage } = require("../pages/installation.page");
+const { DeviceInstallationPage } = require("../pages/device-installation.page");
+const { DeviceDetailsPage } = require("../pages/device-details.page");
 const {
   SelectPowerAndDataCollectorPage,
-} = require("../pages/05_SelectPowerAndDataCollectorPage");
-const Devdata = require("./DeviceData.json");
+} = require("../pages/select-power-and-data-collector.page");
+const Devdata = require("../data/device-installation/device-installation.data.json");
 
 const loginAsEndUser = async (page) => {
   const login = new LoginPage(page);
-  await login.goto(loginData.devUrl);
+  await login.goto(process.env.DEV_BASE_URL);
   await login.selectLanguage();
-  await login.login(loginData.Email, loginData.password);
+  await login.login(
+    process.env.TEST_LOGIN_EMAIL,
+    process.env.TEST_LOGIN_PASSWORD,
+  );
 };
 
 const customTest = base.test.extend({
