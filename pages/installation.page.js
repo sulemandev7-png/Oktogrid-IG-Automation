@@ -1,4 +1,5 @@
 const { expect } = require("@playwright/test");
+const { dragSlider } = require("../utils/ui-helpers");
 
 class InstallationPage {
   constructor(authenticatedPage) {
@@ -23,20 +24,7 @@ class InstallationPage {
   async toggle() {
     console.log("Toggling Confirm switch");
     const knob = this.confirmToggle.locator(".absolute").first();
-    await knob.waitFor({ state: "visible" });
-    const box = await knob.boundingBox();
-
-    await this.authenticatedPage.mouse.move(
-      box.x + box.width / 2,
-      box.y + box.height / 2,
-    );
-    await this.authenticatedPage.mouse.down();
-    await this.authenticatedPage.mouse.move(
-      box.x + box.width / 2 + 190,
-      box.y + box.height / 2,
-      { steps: 10 },
-    );
-    await this.authenticatedPage.mouse.up();
+    await dragSlider(this.authenticatedPage, knob);
   }
   async permissions() {
     console.log("Enabling Camera permission");

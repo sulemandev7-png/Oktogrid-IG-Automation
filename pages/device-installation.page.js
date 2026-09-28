@@ -1,15 +1,14 @@
 const { expect } = require("@playwright/test");
+const { dragSlider } = require("../utils/ui-helpers");
 
 class DeviceInstallationPage {
   constructor(installedPage) {
     this.installedPage = installedPage;
     this.deviceField = installedPage.getByRole("textbox", { name: "xxxxx" });
     this.nextButton = installedPage.getByRole("button", { name: "Next" });
+    this.transformerNextButton = this.nextButton;
     this.transformerType = installedPage.getByRole("radio", {
       name: "Dry-Type",
-    });
-    this.transformerNextButton = installedPage.getByRole("button", {
-      name: "Next",
     });
     this.confirmToggle = installedPage
       .locator('div[class*="cursor-grab"]')
@@ -37,39 +36,20 @@ class DeviceInstallationPage {
     console.log("Selecting transformer type: Dry-Type");
     await this.transformerType.click();
     await expect(this.transformerType).toBeChecked();
-    await expect(this.transformerNextButton).toBeEnabled();
-    await this.transformerNextButton.click();
+    await expect(this.nextButton).toBeEnabled();
+    await this.nextButton.click();
     try {
       await this.confirmToggle.waitFor({ state: "visible", timeout: 5000 });
     } catch {
-      if (await this.transformerNextButton.isVisible()) {
-        await this.transformerNextButton.click();
+      if (await this.nextButton.isVisible()) {
+        await this.nextButton.click();
         await this.confirmToggle.waitFor({ state: "visible" });
       }
     }
   }
   async toggle() {
     console.log("Toggling Confirm switch");
-    const knob = this.confirmToggle;
-    await knob.waitFor({ state: "visible" });
-    const box = await knob.boundingBox();
-    console.log("Knob position before drag:", box);
-
-    await this.installedPage.mouse.move(
-      box.x + box.width / 2,
-      box.y + box.height / 2,
-    );
-    await this.installedPage.mouse.down();
-    await this.installedPage.mouse.move(
-      box.x + box.width / 2 + 190,
-      box.y + box.height / 2,
-      { steps: 10 },
-    );
-    await this.installedPage.mouse.up();
-
-    const boxAfter = await knob.boundingBox();
-    console.log("Knob position after drag:", boxAfter);
-
+    await dragSlider(this.installedPage, this.confirmToggle);
     console.log("Waiting for Asset Details screen to load");
     await this.installedPage
       .getByTestId("assetName")

@@ -4,19 +4,18 @@ class SelectPowerAndDataCollectorPage {
     this.transformerType = page.getByRole("radio", {
       name: "Battery",
     });
-    this.dataCollector = page.getByRole("button", {
-      name: "Next",
-    });
-    this.next = page.getByRole("button", { name: "Next" });
+    this.nextButton = page.getByRole("button", { name: "Next" });
+    this.next = this.nextButton;
+    this.dataCollector = this.nextButton;
   }
   async selectTransformerAndDataCollector() {
     await this.transformerType.click();
-    await this.dataCollector.click();
+    await this.nextButton.click();
     console.log("Waiting for Install Data Collector screen to load");
     await this.page
       .getByText("Install Data Collector")
       .waitFor({ state: "visible" });
-    await this.next.click();
+    await this.nextButton.click();
   }
 }
 module.exports = { SelectPowerAndDataCollectorPage };

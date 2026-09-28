@@ -8,7 +8,7 @@ const devUrl = process.env.DEV_BASE_URL;
 
 test.describe("Login - negative - server-side errors", () => {
   for (const scenario of negativeData) {
-    test(` ${scenario.scenario}`, async ({ page }) => {
+    test(scenario.scenario, async ({ page }) => {
       const wrongLogin = new LoginPage(page);
       await wrongLogin.goto(devUrl);
       await wrongLogin.selectLanguage();
@@ -29,7 +29,7 @@ test.describe("Login - negative - client-side validation", () => {
   });
 
   for (const scenario of invalidData) {
-    test(` ${scenario.scenario}`, async ({ page }) => {
+    test(scenario.scenario, async ({ page }) => {
       const login = new LoginPage(page);
       await login.goto(devUrl);
       await login.selectLanguage();

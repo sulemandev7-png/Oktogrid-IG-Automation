@@ -2,8 +2,7 @@ const { test: customTest, expect } = require("../../utils/fixtures");
 const {
   DeviceInstallationPage,
 } = require("../../pages/device-installation.page");
-const NegativeData = require("../../data/device-installation/device-installation.negative.data.json");
-const NegativeInstallation = JSON.parse(JSON.stringify(NegativeData));
+const NegativeInstallation = require("../../data/device-installation/device-installation.negative.data.json");
 
 customTest.describe("Device Installation - negative", () => {
   customTest(`${NegativeInstallation.scenario}`, async ({ installedPage }) => {

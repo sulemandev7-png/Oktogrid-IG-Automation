@@ -3,20 +3,20 @@ require("dotenv").config();
 module.exports = {
   serverErrors: [
     {
-      scenario: "Logging in with wrong email ",
+      scenario: "Logging in with wrong email",
       Email: "malicksuleman440@gmail.com",
       password: process.env.TEST_LOGIN_PASSWORD || "",
       expectedError: "User does not exist.",
     },
     {
-      scenario: "Incompelte password requirement missing special character",
+      scenario: "Incomplete password requirement missing special character",
       Email: process.env.TEST_LOGIN_EMAIL || "",
       password: process.env.TEST_LOGIN_PASSWORD_NO_SYMBOL || "",
       expectedError:
         "Password: Password must contain at least 1 special character.",
     },
     {
-      scenario: " wrong password",
+      scenario: "Wrong password",
       Email: process.env.TEST_LOGIN_EMAIL || "",
       password: process.env.TEST_LOGIN_PASSWORD_WRONG || "",
       expectedError: "Incorrect username or password.",

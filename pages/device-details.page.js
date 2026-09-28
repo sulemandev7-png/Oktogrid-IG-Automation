@@ -25,6 +25,7 @@ class DeviceDetailsPage {
     this.captureBtn = page.getByRole("button", { name: "Capture frame" });
     this.picConfirm = page.getByRole("button", { name: "Confirm" });
     this.nextButton = page.getByRole("button", { name: "Next" });
+    this.saveButton = this.nextButton;
   }
   async assetDetails(data) {
     console.log("Filling asset name:", data.assetName);
@@ -49,6 +50,13 @@ class DeviceDetailsPage {
     await fieldLocator.press("Tab");
     const errorMessage = this.page.getByText(expectedError, { exact: true });
     await expect(errorMessage).toBeVisible();
+  }
+  async assertNextButtonDisabled() {
+    console.log("Asserting Next button is disabled");
+    await expect(this.nextButton).toBeDisabled();
+  }
+  async assertSaveButtonDisabled() {
+    await this.assertNextButtonDisabled();
   }
   async setDeviceLocation() {
     console.log("Setting device location");

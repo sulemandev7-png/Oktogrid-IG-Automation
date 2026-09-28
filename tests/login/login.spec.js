@@ -2,7 +2,7 @@ const { test, expect } = require("@playwright/test");
 const { LoginPage } = require("../../pages/login.page");
 
 test.describe("Login - positive", () => {
-  test("Selecting the language and loging into the portal", async ({
+  test("Selecting the language and logging into the portal", async ({
     page,
   }) => {
     const login = new LoginPage(page);

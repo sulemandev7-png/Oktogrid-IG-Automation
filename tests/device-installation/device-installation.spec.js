@@ -2,8 +2,7 @@ const { test: customTest, expect } = require("../../utils/fixtures");
 const {
   DeviceInstallationPage,
 } = require("../../pages/device-installation.page");
-const DeviceData = require("../../data/device-installation/device-installation.data.json");
-const Devdata = JSON.parse(JSON.stringify(DeviceData));
+const Devdata = require("../../data/device-installation/device-installation.data.json");
 
 customTest.describe("Device Installation - positive", () => {
   customTest("Installing a device", async ({ installedPage }) => {
