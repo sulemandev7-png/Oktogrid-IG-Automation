@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:positive": "playwright test --grep-invert negative",
+    "test:negative": "playwright test --grep negative"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

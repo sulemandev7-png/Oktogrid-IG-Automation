@@ -1,3 +1,5 @@
+const { expect } = require("@playwright/test");
+
 class SelectPowerAndDataCollectorPage {
   constructor(page) {
     this.page = page;
@@ -7,6 +9,10 @@ class SelectPowerAndDataCollectorPage {
     this.nextButton = page.getByRole("button", { name: "Next" });
     this.next = this.nextButton;
     this.dataCollector = this.nextButton;
+  }
+  async assertNextButtonDisabled() {
+    console.log("Asserting Next button is disabled");
+    await expect(this.nextButton).toBeDisabled();
   }
   async selectTransformerAndDataCollector() {
     await this.transformerType.click();

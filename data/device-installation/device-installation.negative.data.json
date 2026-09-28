@@ -1,5 +1,12 @@
-{
-  "scenario": "Add wrong device id",
-  "deviceId": "99999",
-  "deviceInstallationMsg": "Device not found."
-}
+[
+  {
+    "scenario": "Add wrong device id",
+    "deviceId": "99999",
+    "deviceInstallationMsg": "Device not found."
+  },
+  {
+    "scenario": "Add already mapped device id",
+    "deviceId": "00689",
+    "deviceInstallationMsg": "Device is already mapped."
+  }
+]
