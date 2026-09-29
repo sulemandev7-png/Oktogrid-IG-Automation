@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+.gitignore
 
 # Playwright artifacts & cache
 test-results/
@@ -32,7 +33,7 @@ pnpm-debug.log*
 
 # System & IDE files
 .DS_Store
-Thumbs.db
+Thumbs.dbgit pus
 .idea/
 .vscode/*
 !.vscode/settings.json
