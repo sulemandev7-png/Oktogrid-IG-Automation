@@ -10,4 +10,15 @@ customTest.describe("Pictures - negative", () => {
       await pictures.assertNextButtonDisabled();
     },
   );
+
+  customTest(
+    "Connect button stays disabled when only partial pictures are taken",
+    async ({ powerAndDataCollectorSelectedPage }) => {
+      customTest.setTimeout(60000);
+      const pictures = new PicturesPage(powerAndDataCollectorSelectedPage);
+      await pictures.takePictureButton.first().waitFor({ state: "visible" });
+      await pictures.capturePhotos(1);
+      await pictures.assertNextButtonDisabled();
+    },
+  );
 });

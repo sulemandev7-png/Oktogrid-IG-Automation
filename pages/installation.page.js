@@ -32,6 +32,14 @@ class InstallationPage {
     console.log("Enabling Location permission");
     await this.location.click();
   }
+  async enableCameraPermission() {
+    console.log("Enabling Camera permission");
+    await this.camera.click();
+  }
+  async enableLocationPermission() {
+    console.log("Enabling Location permission");
+    await this.location.click();
+  }
   async nextButton() {
     console.log("Clicking Next button");
     await this.nextBtn.click();

@@ -20,7 +20,7 @@ class PicturesPage {
   async assertNextButtonDisabled() {
     await this.assertConnectButtonDisabled();
   }
-  async capturePictures(count) {
+  async capturePhotos(count) {
     for (let i = 0; i < count; i++) {
       console.log("Capturing picture", i + 1);
       await this.takePictureButton.nth(i).click();
@@ -31,6 +31,9 @@ class PicturesPage {
         .getByRole("button", { name: "Retake" })
         .waitFor({ state: "hidden", timeout: 45000 });
     }
+  }
+  async capturePictures(count) {
+    await this.capturePhotos(count);
     await this.connectButton.click();
   }
 }

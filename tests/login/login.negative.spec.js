@@ -41,3 +41,13 @@ test.describe("Login - negative - client-side validation", () => {
     });
   }
 });
+
+test.describe("Language Selection - negative", () => {
+  test("Select button stays disabled when no language is selected", async ({
+    page,
+  }) => {
+    const login = new LoginPage(page);
+    await login.goto(devUrl);
+    await login.assertSelectLanguageButtonDisabled();
+  });
+});

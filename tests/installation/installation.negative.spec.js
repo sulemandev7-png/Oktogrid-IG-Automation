@@ -11,4 +11,26 @@ customTest.describe("New Installation - negative", () => {
       await installation.assertNextButtonDisabled();
     },
   );
+
+  customTest(
+    "Next button should stay disabled when only Camera permission is enabled",
+    async ({ authenticatedPageNoPermissions }) => {
+      const installation = new InstallationPage(authenticatedPageNoPermissions);
+      await installation.clickInstallation();
+      await installation.toggle();
+      await installation.enableCameraPermission();
+      await installation.assertNextButtonDisabled();
+    },
+  );
+
+  customTest(
+    "Next button should stay disabled when only Location permission is enabled",
+    async ({ authenticatedPageNoPermissions }) => {
+      const installation = new InstallationPage(authenticatedPageNoPermissions);
+      await installation.clickInstallation();
+      await installation.toggle();
+      await installation.enableLocationPermission();
+      await installation.assertNextButtonDisabled();
+    },
+  );
 });

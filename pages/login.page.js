@@ -43,5 +43,8 @@ class LoginPage {
   async getEmailValidationMessage() {
     return this.endUserEmail.evaluate((el) => el.validationMessage);
   }
+  async assertSelectLanguageButtonDisabled() {
+    await expect(this.selectLanguageButton).toBeDisabled();
+  }
 }
 module.exports = { LoginPage };

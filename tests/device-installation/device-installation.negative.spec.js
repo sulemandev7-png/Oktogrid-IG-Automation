@@ -13,12 +13,20 @@ customTest.describe("Device Installation - negative", () => {
     });
   }
 
-  customTest(
-    "Next button stays disabled when device ID is empty",
-    async ({ installedPage }) => {
-      const device = new DeviceInstallationPage(installedPage);
-      await device.enterDeviceId("");
-      await device.assertNextButtonDisabled();
-    },
-  );
+  const disabledScenarios = [
+    { scenario: "device ID is empty", value: "" },
+    { scenario: "device ID is whitespace only", value: "   " },
+    { scenario: "device ID contains only special characters", value: "!@#$" },
+  ];
+
+  for (const { scenario, value } of disabledScenarios) {
+    customTest(
+      `Next button stays disabled when ${scenario}`,
+      async ({ installedPage }) => {
+        const device = new DeviceInstallationPage(installedPage);
+        await device.enterDeviceId(value);
+        await device.assertNextButtonDisabled();
+      },
+    );
+  }
 });
